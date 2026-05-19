@@ -30,7 +30,6 @@ public final class WorkspaceNetworking {
     );
 
     private WorkspaceNetworking() {
-        return;
     }
 
     public static void register() {

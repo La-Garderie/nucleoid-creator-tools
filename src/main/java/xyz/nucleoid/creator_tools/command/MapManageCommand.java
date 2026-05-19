@@ -15,12 +15,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryOps;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.HoverEvent;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.Texts;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -408,7 +403,7 @@ public final class MapManageCommand {
         }, Util.getIoWorkerExecutor());
     }
 
-    protected static Text getClickablePosText(BlockPos pos) {
+    static Text getClickablePosText(BlockPos pos) {
         var linkCommand = "/tp @s " + pos.getX() + " " + pos.getY() + " " + pos.getZ();
         var linkStyle = Style.EMPTY
                 .withClickEvent(new ClickEvent.SuggestCommand(linkCommand))

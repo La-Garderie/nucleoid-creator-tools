@@ -5,9 +5,6 @@ plugins {
 
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
@@ -18,7 +15,7 @@ loom {
 repositories {
   maven { url = "https://maven.nucleoid.xyz/" }
   maven { url = "https://maven.gegy.dev/" }
-  maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+  maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
 
 }
 
@@ -57,7 +54,7 @@ java {
 
 jar {
   from("LICENSE") {
-    rename { "${it}_${project.archivesBaseName}"}
+    rename { "${it}_creator_tools"}
   }
 }
 
@@ -69,7 +66,7 @@ if (System.getenv("MODRINTH")) {
     versionType = "release"
     uploadFile = remapJar // This links to a task that builds your mod jar and sets "uploadFile" to the mod jar.
     gameVersions = [((String) project.minecraft_version)]
-    loaders = ["fabric", "quilt"]
+    loaders = ["fabric"]
   }
 
   remapJar {
