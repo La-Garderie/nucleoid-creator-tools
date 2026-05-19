@@ -33,6 +33,10 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Wo
     @Shadow
     @Final
     public MinecraftServer server;
+
+    @Shadow
+    public abstract ServerWorld getEntityWorld();
+
     private ReturnPosition leaveReturn;
     private int creatorToolsProtocolVersion = WorkspaceNetworking.NO_PROTOCOL_VERSION;
 
@@ -74,7 +78,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Wo
     }
 
     private void onDimensionChange(ServerWorld targetWorld) {
-        var sourceDimension = this.getWorld().getRegistryKey();
+        var sourceDimension = this.getEntityWorld().getRegistryKey();
         var targetDimension = targetWorld.getRegistryKey();
 
         var workspaceManager = MapWorkspaceManager.get(this.server);

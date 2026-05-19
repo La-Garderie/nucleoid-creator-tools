@@ -1,5 +1,5 @@
 plugins {
-  id 'fabric-loom' version '1.10.+'
+  id 'fabric-loom' version "1.16+"
   id 'maven-publish'
   id "com.modrinth.minotaur" version "2.+"
 
@@ -9,7 +9,16 @@ version = project.mod_version
 group = project.maven_group
 
 loom {
+  splitEnvironmentSourceSets()
+
   accessWidenerPath = file("src/main/resources/creator_tools.accesswidener")
+
+  mods {
+    "nucleoid-creator-tools" {
+      sourceSet sourceSets.client
+      sourceSet sourceSets.main
+    }
+  }
 }
 
 repositories {
@@ -24,15 +33,15 @@ dependencies {
   mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
   modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-  modImplementation include('eu.pb4:polymer-core:0.13.2+1.21.6')
-  modImplementation include('eu.pb4:polymer-virtual-entity:0.13.2+1.21.6')
-  modImplementation include('xyz.nucleoid:server-translations-api:2.5.1+1.21.5')
-  modImplementation include('xyz.nucleoid:fantasy:0.6.7+1.21.5')
-  modImplementation(include('me.lucko:fabric-permissions-api:0.4.0'))
+  modImplementation "eu.pb4:polymer-core:${project.polymer_version}"
+  modImplementation "eu.pb4:polymer-virtual-entity:${project.polymer_version}"
+  modImplementation "xyz.nucleoid:server-translations-api:${project.nucleoid_server_translation_api_version}"
+  modImplementation "xyz.nucleoid:fantasy:${project.nucleoid_fantasy_version}"
+  modImplementation "me.lucko:fabric-permissions-api:${project.lucko_fabric_permissions_api_version}"
 
-  modImplementation include('xyz.nucleoid:map-templates:0.2.2+1.21.6')
+  modImplementation "xyz.nucleoid:map-templates:${project.nucleoid_map_templates_version}"
 }
 
 processResources {
